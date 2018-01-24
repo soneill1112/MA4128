@@ -39,3 +39,36 @@ mtcars %>% group_by(cyl)%>% summarize (mean(mpg))
 
 mtcars %>% mutate(sqrtMPG = sqrt(mpg), logMPG = log(mpg)) %>% 
 		select(mpg,sqrtMPG,logMPG,everything()) %>% head(5)
+
+install.packages("readr")
+install.packages("modelr")
+install.packages("randomForest")
+install.packages("ggplot2")
+
+library(readr)
+library(modelr)
+library(randomForest)
+library(ggplot2)
+
+data(diamonds)
+
+diamonds %>% dim()
+diamonds %>% names()
+diamtrain <- diamonds %>% sample_frac(0.30)
+diamtest <- diamonds %>% sample_frac(0.10)
+diamtrain %>% dim()
+diamtest %>% dim()
+
+pricemodel <- lm(price ~ . , data=diamtrain)
+
+rmse(pricemodel,diamtrain)
+rmse(pricemodel,diamtest)
+
+mae(pricemodel,diamtrain)
+mae(pricemodel,diamtest)
+
+rsquare(pricemodel,diamtrain)
+rsquare(pricemodel,diamtest)
+
+qae(pricemodel,diamtrain)
+
