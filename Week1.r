@@ -36,3 +36,6 @@ iris %>% group_by(Species) %>% summarize(meanSL= mean(Sepal.Length),
 					sdSL = sd(Sepal.Length))
 
 mtcars %>% group_by(cyl)%>% summarize (mean(mpg))
+
+mtcars %>% mutate(sqrtMPG = sqrt(mpg), logMPG = log(mpg)) %>% 
+		select(mpg,sqrtMPG,logMPG,everything()) %>% head(5)
