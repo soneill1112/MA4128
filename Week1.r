@@ -30,3 +30,9 @@ iris3 <- iris %>% filter(Sepal.Length > 5.4)
 iris3 %>% dim()
 iris3 <- iris %>% filter(Sepal.Length > 5.6)
 iris3 %>% dim()
+
+iris %>% group_by(Species) %>% summarize(meanSL= mean(Sepal.Length),
+					varSL = var(Sepal.Length),
+					sdSL = sd(Sepal.Length))
+
+mtcars %>% group_by(cyl)%>% summarize (mean(mpg))
